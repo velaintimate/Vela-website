@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELA — Nature's Essence. Your Flow.</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        vela: {
+                            gold: '#B89566',
+                            goldlight: '#D4AF37',
+                            green: '#728A78',
+                            blue: '#6E8CA0',
+                            amber: '#B9734B',
+                            purple: '#876E91',
+                            dark: '#2D3436',
+                            cream: '#FAF8F5',
+                            sand: '#F4EFEA'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+        .bg-pattern {
+            background-color: #FAF8F5;
+            background-image: radial-gradient(#B89566 0.5px, transparent 0.5px), radial-gradient(#B89566 0.5px, #FAF8F5 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-opacity: 0.05;
+        }
+    </style>
+</head>
+<body class="bg-vela-cream text-vela-dark antialiased min-h-screen flex flex-col selection:bg-vela-gold selection:text-white">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-vela-dark text-stone-200 text-xs py-2 px-4 text-center font-medium tracking-widest uppercase">
+        Free Carbon-Neutral Shipping on US Orders Over $50 &nbsp;|&nbsp; Body-Safe &amp; Microbiome Balanced
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="sticky top-0 z-40 bg-vela-cream/90 backdrop-blur-md border-b border-stone-200/60 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Left Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8">
+                <button onclick="navigateTo('home')" class="text-xs font-semibold tracking-widest text-stone-700 hover:text-vela-gold transition-colors uppercase">Home</button>
+                <button onclick="navigateTo('shop-all')" class="text-xs font-semibold tracking-widest text-stone-700 hover:text-vela-gold transition-colors uppercase">Shop All</button>
+                <button onclick="navigateTo('story')" class="text-xs font-semibold tracking-widest text-stone-700 hover:text-vela-gold transition-colors uppercase">Our Story</button>
+                <button onclick="navigateTo('ingredients')" class="text-xs font-semibold tracking-widest text-stone-700 hover:text-vela-gold transition-colors uppercase">Ingredients</button>
+                <button onclick="navigateTo('journal')" class="text-xs font-semibold tracking-widest text-stone-700 hover:text-vela-gold transition-colors uppercase">Journal</button>
+            </div>
+
+            <!-- Center Logo Emblem (Gold Circular Frame Style) -->
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="navigateTo('home')">
+                <div class="w-11 h-11 rounded-full border border-vela-gold/60 flex items-center justify-center p-1 relative bg-amber-50/40 group-hover:border-vela-gold transition-all shadow-sm">
+                    <svg viewBox="0 0 100 100" class="w-full h-full text-vela-gold">
+                        <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-dasharray="260 25" stroke-dashoffset="40" />
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.8" />
+                        <text x="50" y="58" font-family="serif" font-size="34" font-weight="bold" text-anchor="middle" fill="currentColor">V</text>
+                        <path d="M 42 40 C 38 34, 44 28, 47 33 C 45 37, 43 39, 42 40 Z" fill="currentColor" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-serif text-2xl tracking-[0.28em] text-stone-900 font-semibold block leading-none">VELA</span>
+                    <span class="text-[8px] uppercase tracking-[0.22em] text-vela-gold font-bold block mt-1">Nature's Essence. Your Flow.</span>
+                </div>
+            </div>
+
+            <!-- Right Action Items -->
+            <div class="flex items-center space-x-6">
+                <button onclick="navigateTo('faq')" class="hidden sm:block text-xs font-semibold tracking-wider text-stone-600 hover:text-stone-900 uppercase">FAQ</button>
+                
+                <button onclick="toggleCart()" class="relative p-2 text-stone-700 hover:text-vela-gold transition-colors">
+                    <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                    <span id="cart-counter" class="absolute -top-1 -right-1 bg-vela-gold text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-sm">0</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-stone-700">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-50 border-b border-stone-200 px-6 py-6 space-y-4">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">Home</button>
+            <button onclick="navigateTo('shop-all'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">Shop All</button>
+            <button onclick="navigateTo('story'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">Our Story</button>
+            <button onclick="navigateTo('ingredients'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">Ingredients Glossary</button>
+            <button onclick="navigateTo('journal'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">Journal</button>
+            <button onclick="navigateTo('faq'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">FAQ &amp; Help</button>
+        </div>
+    </nav>
+
+    <!-- Main Dynamic Content Views Container -->
+    <main class="flex-grow">
+
+        <!-- 1. HOME VIEW -->
+        <div id="view-home" class="page-view">
+            <!-- Hero Section -->
+            <section class="relative bg-vela-sand/60 py-20 lg:py-28 overflow-hidden border-b border-stone-200/50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-6 text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vela-gold/10 text-vela-gold text-xs font-semibold uppercase tracking-widest">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Clean Intimate Care &amp; Active Mineral Serums
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal text-stone-900 leading-tight">
+                                Pure Botanicals. <br><span class="italic font-normal text-vela-gold">Refined Intimate Wellness.</span>
+                            </h1>
+                            <p class="text-base sm:text-lg text-stone-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+                                Formulated with micro-dosed mineral salts, organic botanicals, and bio-identical hyaluronic acid to support pH balance, hydration, and natural tissue tone.
+                            </p>
+                            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                                <button onclick="navigateTo('shop-all')" class="w-full sm:w-auto px-8 py-4 bg-vela-dark text-white text-xs uppercase tracking-widest font-semibold hover:bg-vela-gold transition-all duration-300 shadow-md">
+                                    Explore The Collection
+                                </button>
+                                <button onclick="navigateTo('story')" class="w-full sm:w-auto px-8 py-4 border border-stone-300 text-stone-800 text-xs uppercase tracking-widest font-semibold hover:border-stone-900 transition-all">
+                                    Our Formulation Science
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Hero Bottle Graphic Showcase -->
+                        <div class="relative flex justify-center items-center">
+                            <div class="w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-stone-200/50 absolute blur-3xl -z-10"></div>
+                            <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl border border-stone-200 shadow-xl max-w-sm w-full text-center relative">
+                                <div class="absolute -top-4 right-4 bg-vela-gold text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full shadow">
+                                    Flagship Formula
+                                </div>
+                                <!-- Vector Rendered Bottle Artwork -->
+                                <div class="w-32 h-56 mx-auto mb-4 relative">
+                                    <svg viewBox="0 0 100 200" class="w-full h-full drop-shadow-md">
+                                        <!-- Bottle Top Pump -->
+                                        <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                        <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                        <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                        <!-- Bottle Body -->
+                                        <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                        <!-- Label -->
+                                        <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                        <!-- Label Design -->
+                                        <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                        <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                        <text x="50" y="105" font-family="serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#2D3436">MINERAL TONING</text>
+                                        <text x="50" y="113" font-family="sans-serif" font-size="5" text-anchor="middle" fill="#876E91">SERUM</text>
+                                        <line x1="35" y1="120" x2="65" y2="120" stroke="#876E91" stroke-width="0.5" />
+                                        <text x="50" y="130" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Potassium Alum · Rosewater</text>
+                                        <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                                    </svg>
+                                </div>
+                                <h3 class="font-serif text-xl text-stone-900 font-semibold">Mineral Toning Serum</h3>
+                                <p class="text-xs text-stone-500 mt-1">Potassium Alum · Rosewater · Hyaluronic Acid</p>
+                                <p class="text-sm font-semibold text-vela-gold mt-2">$48.00</p>
+                                <button onclick="addToCart('mineral-toning')" class="mt-4 w-full py-2.5 bg-vela-dark text-white text-xs uppercase tracking-widest font-semibold hover:bg-vela-gold transition-colors">
+                                    Add To Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Products Grid -->
+            <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-vela-gold">Formulated For Daily Harmony</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif text-stone-900 mt-2">The Complete Vela Lineup</h2>
+                    <p class="text-stone-600 text-sm mt-3 font-light">Body-safe, non-synthetic intimate formulations crafted with bio-matched pH levels and ultra-pure botanical actives.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Product Card 1: Daily Hydration -->
+                    <div class="bg-white rounded-xl border border-stone-200/80 p-6 flex flex-col justify-between hover:shadow-lg transition-all group">
+                        <div>
+                            <div class="bg-stone-50 rounded-lg p-6 mb-6 flex justify-center items-center h-56 relative group-hover:bg-amber-50/20 transition-colors">
+                                <svg viewBox="0 0 100 200" class="w-28 h-48 drop-shadow-sm">
+                                    <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                    <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                    <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                    <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                    <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                    <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                    <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                    <text x="50" y="105" font-family="serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#2D3436">DAILY HYDRATION</text>
+                                    <text x="50" y="113" font-family="sans-serif" font-size="5" text-anchor="middle" fill="#6E8CA0">INTIMATE LUBRICANT</text>
+                                    <path d="M 35 122 Q 50 118 65 122" stroke="#6E8CA0" fill="none" stroke-width="1" />
+                                    <text x="50" y="132" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Hyaluronic Acid · Aloe</text>
+                                    <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                                </svg>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-vela-blue">pH 4.0 Hydration</span>
+                            <h3 class="font-serif text-lg text-stone-900 font-semibold mt-1 cursor-pointer hover:text-vela-gold" onclick="navigateTo('product-daily-hydration')">Daily Hydration</h3>
+                            <p class="text-xs text-stone-500 mt-2 line-clamp-2 leading-relaxed">Pure water-based moisturizer enriched with bio-identical hyaluronic acid, organic aloe vera, and soothing vitamin E.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <span class="font-semibold text-stone-900">$38.00</span>
+                            <button onclick="addToCart('daily-hydration')" class="px-4 py-2 bg-stone-900 text-white text-xs uppercase font-semibold tracking-wider hover:bg-vela-gold transition-colors">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2: Sensation-Enhancing -->
+                    <div class="bg-white rounded-xl border border-stone-200/80 p-6 flex flex-col justify-between hover:shadow-lg transition-all group">
+                        <div>
+                            <div class="bg-stone-50 rounded-lg p-6 mb-6 flex justify-center items-center h-56 relative group-hover:bg-amber-50/20 transition-colors">
+                                <svg viewBox="0 0 100 200" class="w-28 h-48 drop-shadow-sm">
+                                    <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                    <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                    <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                    <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                    <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                    <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                    <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                    <text x="50" y="103" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#2D3436">SENSATION</text>
+                                    <text x="50" y="110" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#2D3436">ENHANCING</text>
+                                    <path d="M 35 120 Q 50 115 65 120" stroke="#B9734B" fill="none" stroke-width="1" />
+                                    <text x="50" y="130" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Ginger · Damiana · Maca</text>
+                                    <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                                </svg>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-vela-amber">Botanical Warmth</span>
+                            <h3 class="font-serif text-lg text-stone-900 font-semibold mt-1 cursor-pointer hover:text-vela-gold" onclick="navigateTo('product-sensation-enhancing')">Sensation-Enhancing</h3>
+                            <p class="text-xs text-stone-500 mt-2 line-clamp-2 leading-relaxed">Formulated with organic ginger root, damiana leaf, and maca extract to gently awaken natural senses and circulation.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <span class="font-semibold text-stone-900">$42.00</span>
+                            <button onclick="addToCart('sensation-enhancing')" class="px-4 py-2 bg-stone-900 text-white text-xs uppercase font-semibold tracking-wider hover:bg-vela-gold transition-colors">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3: Gentle Balance -->
+                    <div class="bg-white rounded-xl border border-stone-200/80 p-6 flex flex-col justify-between hover:shadow-lg transition-all group">
+                        <div>
+                            <div class="bg-stone-50 rounded-lg p-6 mb-6 flex justify-center items-center h-56 relative group-hover:bg-amber-50/20 transition-colors">
+                                <svg viewBox="0 0 100 200" class="w-28 h-48 drop-shadow-sm">
+                                    <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                    <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                    <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                    <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                    <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                    <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                    <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                    <text x="50" y="105" font-family="serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#2D3436">GENTLE BALANCE</text>
+                                    <text x="50" y="113" font-family="sans-serif" font-size="5" text-anchor="middle" fill="#728A78">MICROBIOME CARE</text>
+                                    <path d="M 35 120 Q 50 124 65 120" stroke="#728A78" fill="none" stroke-width="1" />
+                                    <text x="50" y="130" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Prebiotics · Green Tea</text>
+                                    <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                                </svg>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-vela-green">Prebiotic Protection</span>
+                            <h3 class="font-serif text-lg text-stone-900 font-semibold mt-1 cursor-pointer hover:text-vela-gold" onclick="navigateTo('product-gentle-balance')">Gentle Balance</h3>
+                            <p class="text-xs text-stone-500 mt-2 line-clamp-2 leading-relaxed">Microbiome-friendly formula enriched with plant prebiotics, green tea antioxidants, and calming organic chamomile.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <span class="font-semibold text-stone-900">$36.00</span>
+                            <button onclick="addToCart('gentle-balance')" class="px-4 py-2 bg-stone-900 text-white text-xs uppercase font-semibold tracking-wider hover:bg-vela-gold transition-colors">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 4: Mineral Toning Serum -->
+                    <div class="bg-white rounded-xl border border-vela-gold/30 p-6 flex flex-col justify-between hover:shadow-lg transition-all group relative">
+                        <div class="absolute -top-3 left-6 bg-vela-gold text-white text-[9px] uppercase font-bold tracking-widest px-2.5 py-0.5 rounded">
+                            Specialty Active
+                        </div>
+                        <div>
+                            <div class="bg-stone-50 rounded-lg p-6 mb-6 flex justify-center items-center h-56 relative group-hover:bg-amber-50/20 transition-colors">
+                                <svg viewBox="0 0 100 200" class="w-28 h-48 drop-shadow-sm">
+                                    <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                    <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                    <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                    <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                    <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                    <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                    <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                    <text x="50" y="103" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#2D3436">MINERAL TONING</text>
+                                    <text x="50" y="110" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#876E91">SERUM</text>
+                                    <path d="M 35 120 Q 50 115 65 120" stroke="#876E91" fill="none" stroke-width="1" />
+                                    <text x="50" y="130" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Potassium Alum · Rosewater</text>
+                                    <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                                </svg>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-vela-purple">Tissue Refinement</span>
+                            <h3 class="font-serif text-lg text-stone-900 font-semibold mt-1 cursor-pointer hover:text-vela-gold" onclick="navigateTo('product-mineral-toning')">Mineral Toning Serum</h3>
+                            <p class="text-xs text-stone-500 mt-2 line-clamp-2 leading-relaxed">Micro-dosed Potassium Alum mineral salt paired with damask rosewater and hyaluronic acid for gentle topical tissue refining.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <span class="font-semibold text-stone-900">$48.00</span>
+                            <button onclick="addToCart('mineral-toning')" class="px-4 py-2 bg-stone-900 text-white text-xs uppercase font-semibold tracking-wider hover:bg-vela-gold transition-colors">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="bg-stone-900 text-stone-200 py-20 border-t border-b border-stone-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 text-center lg:text-left">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 rounded-full bg-vela-gold/20 flex items-center justify-center text-vela-gold mx-auto lg:mx-0">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-normal text-white">pH 4.0 Bio-Matched</h3>
+                            <p class="text-xs text-stone-400 leading-relaxed font-light">
+                                Intimate skin maintains a naturally acidic pH environment. Every Vela formula is clinically calibrated between pH 3.8 and 4.2 to support microflora.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 rounded-full bg-vela-gold/20 flex items-center justify-center text-vela-gold mx-auto lg:mx-0">
+                                <i data-lucide="droplet" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-normal text-white">Osmotically Correct</h3>
+                            <p class="text-xs text-stone-400 leading-relaxed font-light">
+                                Formulated to match human tissue osmolality (under 300 mOsm/kg), preventing cell dehydration and mucosal irritation during daily use.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 rounded-full bg-vela-gold/20 flex items-center justify-center text-vela-gold mx-auto lg:mx-0">
+                                <i data-lucide="leaf" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif text-xl font-normal text-white">100% Pure Botanicals</h3>
+                            <p class="text-xs text-stone-400 leading-relaxed font-light">
+                                Zero parabens, glycerin, petrochemicals, or artificial fragrance. Pure organic extracts harvested responsibly for delicate skin safety.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 2. SHOP ALL VIEW -->
+        <div id="view-shop-all" class="page-view hidden py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-vela-gold">Full Product Lineup</span>
+                <h1 class="text-4xl font-serif text-stone-900 mt-2">All Formulations</h1>
+                <p class="text-stone-600 text-sm mt-3 font-light">Discover our complete collection of pH-balanced intimate lubricants and mineral active tissue serums.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex justify-center gap-3 mb-12 flex-wrap text-xs uppercase tracking-wider">
+                <button class="px-5 py-2 rounded-full bg-vela-dark text-white font-medium">All Formulations</button>
+                <button class="px-5 py-2 rounded-full bg-stone-100 text-stone-700 hover:bg-stone-200 font-medium">Hydration &amp; Daily</button>
+                <button class="px-5 py-2 rounded-full bg-stone-100 text-stone-700 hover:bg-stone-200 font-medium">Active Mineral Serums</button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Product Card 1: Daily Hydration -->
+                <div class="bg-white rounded-xl border border-stone-200/80 p-6 flex flex-col justify-between hover:shadow-lg transition-all group">
+                    <div>
+                        <div class="bg-stone-50 rounded-lg p-6 mb-6 flex justify-center items-center h-56 relative group-hover:bg-amber-50/20 transition-colors cursor-pointer" onclick="navigateTo('product-daily-hydration')">
+                            <svg viewBox="0 0 100 200" class="w-28 h-48 drop-shadow-sm">
+                                <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                <text x="50" y="105" font-family="serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#2D3436">DAILY HYDRATION</text>
+                                <text x="50" y="113" font-family="sans-serif" font-size="5" text-anchor="middle" fill="#6E8CA0">INTIMATE LUBRICANT</text>
+                                <path d="M 35 122 Q 50 118 65 122" stroke="#6E8CA0" fill="none" stroke-width="1" />
+                                <text x="50" y="132" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Hyaluronic Acid · Aloe</text>
+                                <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                            </svg>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-vela-blue">pH 4.0 Hydration</span>
+                        <h3 class="font-serif text-lg text-stone-900 font-semibold mt-1 cursor-pointer hover:text-vela-gold" onclick="navigateTo('product-daily-hydration')">Daily Hydration Lubricant</h3>
+                        <p class="text-xs text-stone-500 mt-2 line-clamp-2 leading-relaxed">Bio-identical Hyaluronic Acid &amp; Organic Aloe Vera for daily intimate moisture and protection.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+                        <span class="font-semibold text-stone-900">$38.00</span>
+                        <button onclick="addToCart('daily-hydration')" class="px-4 py-2 bg-stone-900 text-white text-xs uppercase font-semibold tracking-wider hover:bg-vela-gold transition-colors">Add</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 2: Sensation-Enhancing -->
+                <div class="bg-white rounded-xl border border-stone-200/80 p-6 flex flex-col justify-between hover:shadow-lg transition-all group">
+                    <div>
+                        <div class="bg-stone-50 rounded-lg p-6 mb-6 flex justify-center items-center h-56 relative group-hover:bg-amber-50/20 transition-colors cursor-pointer" onclick="navigateTo('product-sensation-enhancing')">
+                            <svg viewBox="0 0 100 200" class="w-28 h-48 drop-shadow-sm">
+                                <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                <text x="50" y="103" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#2D3436">SENSATION</text>
+                                <text x="50" y="110" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#2D3436">ENHANCING</text>
+                                <path d="M 35 120 Q 50 115 65 120" stroke="#B9734B" fill="none" stroke-width="1" />
+                                <text x="50" y="130" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Ginger · Damiana · Maca</text>
+                                <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                            </svg>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-vela-amber">Botanical Warmth</span>
+                        <h3 class="font-serif text-lg text-stone-900 font-semibold mt-1 cursor-pointer hover:text-vela-gold" onclick="navigateTo('product-sensation-enhancing')">Sensation-Enhancing</h3>
+                        <p class="text-xs text-stone-500 mt-2 line-clamp-2 leading-relaxed">Ginger Root Extract, Damiana Leaf &amp; Maca Extract to awaken natural sensation.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+                        <span class="font-semibold text-stone-900">$42.00</span>
+                        <button onclick="addToCart('sensation-enhancing')" class="px-4 py-2 bg-stone-900 text-white text-xs uppercase font-semibold tracking-wider hover:bg-vela-gold transition-colors">Add</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 3: Gentle Balance -->
+                <div class="bg-white rounded-xl border border-stone-200/80 p-6 flex flex-col justify-between hover:shadow-lg transition-all group">
+                    <div>
+                        <div class="bg-stone-50 rounded-lg p-6 mb-6 flex justify-center items-center h-56 relative group-hover:bg-amber-50/20 transition-colors cursor-pointer" onclick="navigateTo('product-gentle-balance')">
+                            <svg viewBox="0 0 100 200" class="w-28 h-48 drop-shadow-sm">
+                                <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                <text x="50" y="105" font-family="serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#2D3436">GENTLE BALANCE</text>
+                                <text x="50" y="113" font-family="sans-serif" font-size="5" text-anchor="middle" fill="#728A78">MICROBIOME CARE</text>
+                                <path d="M 35 120 Q 50 124 65 120" stroke="#728A78" fill="none" stroke-width="1" />
+                                <text x="50" y="130" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Prebiotics · Green Tea</text>
+                                <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                            </svg>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-vela-green">Prebiotic Protection</span>
+                        <h3 class="font-serif text-lg text-stone-900 font-semibold mt-1 cursor-pointer hover:text-vela-gold" onclick="navigateTo('product-gentle-balance')">Gentle Balance Lubricant</h3>
+                        <p class="text-xs text-stone-500 mt-2 line-clamp-2 leading-relaxed">Plant Prebiotics, Green Tea Antioxidants &amp; Chamomile to protect microflora balance.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+                        <span class="font-semibold text-stone-900">$36.00</span>
+                        <button onclick="addToCart('gentle-balance')" class="px-4 py-2 bg-stone-900 text-white text-xs uppercase font-semibold tracking-wider hover:bg-vela-gold transition-colors">Add</button>
+                    </div>
+                </div>
+
+                <!-- Product Card 4: Mineral Toning Serum -->
+                <div class="bg-white rounded-xl border border-vela-gold/40 p-6 flex flex-col justify-between hover:shadow-lg transition-all group relative">
+                    <div class="absolute -top-3 left-6 bg-vela-gold text-white text-[9px] uppercase font-bold tracking-widest px-2.5 py-0.5 rounded">
+                        Specialty Active
+                    </div>
+                    <div>
+                        <div class="bg-stone-50 rounded-lg p-6 mb-6 flex justify-center items-center h-56 relative group-hover:bg-amber-50/20 transition-colors cursor-pointer" onclick="navigateTo('product-mineral-toning')">
+                            <svg viewBox="0 0 100 200" class="w-28 h-48 drop-shadow-sm">
+                                <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                <text x="50" y="103" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#2D3436">MINERAL TONING</text>
+                                <text x="50" y="110" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#876E91">SERUM</text>
+                                <path d="M 35 120 Q 50 115 65 120" stroke="#876E91" fill="none" stroke-width="1" />
+                                <text x="50" y="130" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Potassium Alum · Rosewater</text>
+                                <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                            </svg>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-vela-purple">Tissue Refinement</span>
+                        <h3 class="font-serif text-lg text-stone-900 font-semibold mt-1 cursor-pointer hover:text-vela-gold" onclick="navigateTo('product-mineral-toning')">Mineral Toning Serum</h3>
+                        <p class="text-xs text-stone-500 mt-2 line-clamp-2 leading-relaxed">Micro-Dosed Potassium Alum Salt &amp; Damask Rosewater for gentle tissue refinement.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+                        <span class="font-semibold text-stone-900">$48.00</span>
+                        <button onclick="addToCart('mineral-toning')" class="px-4 py-2 bg-stone-900 text-white text-xs uppercase font-semibold tracking-wider hover:bg-vela-gold transition-colors">Add</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 3. PRODUCT DETAIL VIEW (Mineral Toning Serum) -->
+        <div id="view-product-mineral-toning" class="page-view hidden py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div class="bg-white p-12 rounded-2xl border border-stone-200 text-center">
+                    <svg viewBox="0 0 100 200" class="w-48 h-80 mx-auto drop-shadow-lg">
+                        <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                        <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                        <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                        <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                        <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                        <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                        <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                        <text x="50" y="103" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#2D3436">MINERAL TONING</text>
+                        <text x="50" y="110" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#876E91">SERUM</text>
+                    </svg>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vela-purple/10 text-vela-purple text-xs font-semibold uppercase tracking-widest">
+                        Micro-Dosed Mineral Active
+                    </div>
+                    <h1 class="text-4xl font-serif text-stone-900">Mineral Toning Serum</h1>
+                    <p class="text-2xl font-semibold text-vela-gold">$48.00 <span class="text-xs font-normal text-stone-500">/ 100 mL (3.4 fl. oz.)</span></p>
+                    
+                    <p class="text-stone-600 leading-relaxed font-light text-sm">
+                        An advanced intimate tissue refiner combining purified micro-dosed Potassium Alum mineral salt, organic Rosa Damascena rosewater, and bio-identical hyaluronic acid. Designed to promote local skin tightness, micro-vascular toning, and long-lasting freshness without disrupting natural vaginal ecology.
+                    </p>
+
+                    <div class="border-t border-b border-stone-200 py-4 space-y-3">
+                        <div class="flex items-center gap-3 text-xs text-stone-700">
+                            <i data-lucide="check" class="w-4 h-4 text-vela-gold"></i> Formulated with purified Potassium Alum mineral active
+                        </div>
+                        <div class="flex items-center gap-3 text-xs text-stone-700">
+                            <i data-lucide="check" class="w-4 h-4 text-vela-gold"></i> Clinically pH-Balanced to 4.2 for delicate tissue safety
+                        </div>
+                        <div class="flex items-center gap-3 text-xs text-stone-700">
+                            <i data-lucide="check" class="w-4 h-4 text-vela-gold"></i> Infused with soothing Organic Rosewater &amp; Hyaluronic Acid
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <button onclick="addToCart('mineral-toning')" class="w-full py-4 bg-vela-dark text-white text-xs uppercase tracking-widest font-semibold hover:bg-vela-gold transition-colors shadow-md">
+                            Add To Bag — $48.00
+                        </button>
+                    </div>
+
+                    <div class="pt-4 text-xs text-stone-500 leading-relaxed">
+                        <strong>Directions:</strong> Apply 1 small drop to clean external intimate tissue. Gently massage until fully absorbed. Use 2-3 times weekly for mineral toning and tissue refinement.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. INGREDIENTS GLOSSARY VIEW -->
+        <div id="view-ingredients" class="page-view hidden py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-vela-gold">Full Transparency</span>
+                <h1 class="text-4xl font-serif text-stone-900 mt-2">Ingredients Glossary</h1>
+                <p class="text-stone-600 text-sm mt-3 font-light">Every ingredient in our formulations is carefully vetted for clinical safety, dermal biocompatibility, and vaginal microbiome harmony.</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Ingredient Item 1 -->
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-serif text-lg font-semibold text-stone-900">Potassium Alum (Natural Mineral Salt)</h3>
+                            <span class="text-[10px] uppercase tracking-widest font-bold text-vela-purple">Tissue Refinement &amp; Astringency</span>
+                        </div>
+                        <span class="text-xs bg-stone-100 text-stone-700 px-2.5 py-1 rounded">Mineral Active</span>
+                    </div>
+                    <p class="text-xs text-stone-600 mt-3 leading-relaxed">
+                        A naturally occurring volcanic mineral salt revered for centuries in traditional wellness. Micro-dosed in our Mineral Toning Serum, purified Potassium Alum gently contracts skin proteins on topical tissue surfaces, providing mild astringency, pore tightening, and natural antimicrobial freshness without entering systemic circulation.
+                    </p>
+                </div>
+
+                <!-- Ingredient Item 2 -->
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-serif text-lg font-semibold text-stone-900">Bio-Identical Hyaluronic Acid</h3>
+                            <span class="text-[10px] uppercase tracking-widest font-bold text-vela-blue">Deep Hydration</span>
+                        </div>
+                        <span class="text-xs bg-stone-100 text-stone-700 px-2.5 py-1 rounded">Humectant</span>
+                    </div>
+                    <p class="text-xs text-stone-600 mt-3 leading-relaxed">
+                        Attracts and holds up to 1,000 times its weight in water, providing long-lasting mucosal moisture that restores natural elasticity and prevents micro-friction during intimate activity.
+                    </p>
+                </div>
+
+                <!-- Ingredient Item 3 -->
+                <div class="bg-white p-6 rounded-xl border border-stone-200 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-serif text-lg font-semibold text-stone-900">Organic Damiana Leaf &amp; Ginger Root</h3>
+                            <span class="text-[10px] uppercase tracking-widest font-bold text-vela-amber">Botanical Warming</span>
+                        </div>
+                        <span class="text-xs bg-stone-100 text-stone-700 px-2.5 py-1 rounded">Plant Extract</span>
+                    </div>
+                    <p class="text-xs text-stone-600 mt-3 leading-relaxed">
+                        Traditional botanical stimulants that encourage localized micro-circulation, producing a natural, comforting warmth and heightened tactile sensitivity.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. OUR STORY VIEW -->
+        <div id="view-story" class="page-view hidden py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-vela-gold">Our Foundation</span>
+                <h1 class="text-4xl font-serif text-stone-900 mt-2">The Vela Standard</h1>
+                <p class="text-stone-600 text-sm mt-3 font-light">Crafted in New Mexico with clean botanicals and micro-dosed active minerals.</p>
+            </div>
+
+            <div class="bg-white p-8 sm:p-12 rounded-2xl border border-stone-200 space-y-6 text-stone-700 leading-relaxed font-light text-sm">
+                <p>
+                    <strong>VELA</strong> was founded on a simple principle: intimate wellness deserves the exact same caliber of formulaic rigor, aesthetic elegance, and clinical safety as luxury skincare.
+                </p>
+                <p>
+                    For decades, intimate products were loaded with synthetic glycerin, parabens, sticky sugar alcohols, and artificial scents that disrupted natural pH levels and caused micro-irritation. We set out to redefine intimate care by blending organic botanical humectants with medical-grade active minerals.
+                </p>
+                <div class="p-6 bg-vela-sand/50 rounded-xl border border-vela-gold/20 font-serif text-stone-900 text-base italic text-center">
+                    "Nature’s Essence. Your Flow. Supporting intimate vitality through conscious formulation."
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. JOURNAL VIEW -->
+        <div id="view-journal" class="page-view hidden py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-vela-gold">The Vela Journal</span>
+                <h1 class="text-4xl font-serif text-stone-900 mt-2">Intimate Science &amp; Wellness</h1>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <article class="bg-white p-6 rounded-xl border border-stone-200">
+                    <span class="text-[10px] font-bold uppercase text-vela-gold tracking-widest">Ingredient Spotlight</span>
+                    <h3 class="font-serif text-xl text-stone-900 mt-2 font-semibold">The Science of Potassium Alum Mineral Salt</h3>
+                    <p class="text-xs text-stone-500 mt-2 leading-relaxed">Discover how micro-dosed mineral salts interact with dermal protein structures to provide natural astringency and tissue refinement without cellular damage.</p>
+                </article>
+
+                <article class="bg-white p-6 rounded-xl border border-stone-200">
+                    <span class="text-[10px] font-bold uppercase text-vela-gold tracking-widest">Physiology</span>
+                    <h3 class="font-serif text-xl text-stone-900 mt-2 font-semibold">Why pH 4.0 Matters For Intimate Ecology</h3>
+                    <p class="text-xs text-stone-500 mt-2 leading-relaxed">Understanding how maintaining an acidic vaginal pH shields against unwanted bacteria and protects natural tissue hydration.</p>
+                </article>
+            </div>
+        </div>
+
+        <!-- 7. FAQ VIEW -->
+        <div id="view-faq" class="page-view hidden py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-vela-gold">Common Questions</span>
+                <h1 class="text-4xl font-serif text-stone-900 mt-2">Frequently Asked Questions</h1>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl border border-stone-200">
+                    <h3 class="font-serif text-base font-semibold text-stone-900">Are Vela products safe for sensitive skin?</h3>
+                    <p class="text-xs text-stone-600 mt-2 leading-relaxed">Yes. Every formula is dermatologist-tested, pH-balanced between 3.8 and 4.2, and free from fragrance, glycerin, parabens, and petrochemicals.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-stone-200">
+                    <h3 class="font-serif text-base font-semibold text-stone-900">How does the Mineral Toning Serum work?</h3>
+                    <p class="text-xs text-stone-600 mt-2 leading-relaxed">The serum utilizes micro-dosed natural Potassium Alum salt—a refined mineral astringent—to gently tone topical tissue while organic rosewater and hyaluronic acid preserve soft skin hydration.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. PRIVACY POLICY VIEW -->
+        <div id="view-privacy" class="page-view hidden py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-vela-gold">Legal &amp; Transparency</span>
+                <h1 class="text-4xl font-serif text-stone-900 mt-2">Privacy Policy</h1>
+                <p class="text-stone-500 text-xs mt-2">Effective Date: January 1, 2026 | Last Updated: September 2026</p>
+            </div>
+
+            <div class="bg-white p-8 sm:p-12 rounded-2xl border border-stone-200 space-y-8 text-stone-700 text-xs sm:text-sm leading-relaxed font-light">
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">1. Introduction &amp; Scope</h2>
+                    <p>
+                        VELA WELLNESS CO., LLC ("Vela," "we," "us," or "our") respects your personal privacy and is committed to protecting the personal data you share with us. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you visit <span class="font-medium text-stone-900">velawellness.com</span>, purchase our intimate formulations, or interact with our digital services.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">2. Information We Collect</h2>
+                    <p class="mb-3">We collect information that identifies, relates to, or describes you directly or indirectly:</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong class="font-medium text-stone-900">Personal Information:</strong> Name, billing and discrete shipping address, email address, telephone number, and payment details processed securely via encrypted PCI-DSS compliant payment gateways.</li>
+                        <li><strong class="font-medium text-stone-900">Account &amp; Order History:</strong> Product purchases, order notes, communication history with customer care, and preferences.</li>
+                        <li><strong class="font-medium text-stone-900">Automated Data &amp; Analytics:</strong> IP address, browser type, device details, page views, and interaction patterns gathered via essential session cookies and performance measurement tools.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">3. How We Use Your Information</h2>
+                    <p class="mb-3">We utilize collected data strictly for legitimate operational and business purposes, including:</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Fulfilling, packaging, and shipping your intimate care orders in discrete, unbranded outer packaging.</li>
+                        <li>Processing secure payments, preventing fraudulent transactions, and managing returns or exchanges.</li>
+                        <li>Sending transactional updates, tracking numbers, and customer support responses.</li>
+                        <li>Delivering opted-in newsletter updates, wellness articles, and educational ingredient spotlights (you may opt out at any time).</li>
+                        <li>Optimizing website accessibility, performance, and user interface responsiveness.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">4. Data Sharing &amp; No-Sale Commitment</h2>
+                    <p>
+                        <strong class="font-medium text-stone-900">We do not sell, rent, or trade your personal information to third parties.</strong> We only share necessary data with trusted service providers who operate under strict confidentiality agreements, such as payment processors, shipping carriers, and technical infrastructure hosting providers. We may disclose data if required by law, court order, or governmental regulation.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">5. Security &amp; Data Retention</h2>
+                    <p>
+                        We employ industry-standard administrative, technical, and physical safeguards—including SSL/TLS encryption for all data transmissions—to protect your personal information against unauthorized access, loss, or misuse. Data is retained only for as long as necessary to fulfill order requirements and legal accounting obligations.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">6. Your Rights &amp; Contact Information</h2>
+                    <p>
+                        Depending on your location, you have the right to access, correct, export, or request deletion of your personal information. To exercise any of these rights, or if you have questions regarding our privacy practices, please contact our Privacy Team at:
+                    </p>
+                    <div class="mt-4 p-4 bg-stone-50 rounded-lg border border-stone-200">
+                        <p class="font-medium text-stone-900">VELA WELLNESS CO., LLC</p>
+                        <p>Attn: Privacy Officer</p>
+                        <p>Taos, NM 87571 USA</p>
+                        <p>Email: <a href="mailto:privacy@velawellness.com" class="text-vela-gold hover:underline">privacy@velawellness.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. TERMS OF SERVICE VIEW -->
+        <div id="view-terms" class="page-view hidden py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-vela-gold">Legal Terms</span>
+                <h1 class="text-4xl font-serif text-stone-900 mt-2">Terms of Service</h1>
+                <p class="text-stone-500 text-xs mt-2">Effective Date: January 1, 2026 | Last Updated: September 2026</p>
+            </div>
+
+            <div class="bg-white p-8 sm:p-12 rounded-2xl border border-stone-200 space-y-8 text-stone-700 text-xs sm:text-sm leading-relaxed font-light">
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">1. Acceptance of Terms &amp; Age Eligibility</h2>
+                    <p>
+                        By accessing, browsing, or purchasing from <span class="font-medium text-stone-900">velawellness.com</span>, you agree to be bound by these Terms of Service and all applicable federal, state, and local laws. You must be at least 18 years of age (or the legal age of majority in your jurisdiction) to purchase intimate wellness products on this website.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">2. Product Nature &amp; Cosmetic Use</h2>
+                    <p>
+                        Vela products—including our Daily Hydration Lubricant, Sensation-Enhancing Lubricant, Gentle Balance Prebiotic, and Mineral Toning Serum—are formulated exclusively for topical, external, and intimate personal cosmetic care. They are not pharmaceuticals or medical devices and are not intended to treat medical conditions.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">3. Pricing, Orders &amp; Discrete Packaging</h2>
+                    <p class="mb-3">
+                        All prices are listed in U.S. Dollars (USD). We reserve the right to modify prices, discontinue products, or limit order quantities at any time without prior notice.
+                    </p>
+                    <p>
+                        To protect your privacy, all Vela orders are shipped in plain, unbranded boxes or mailers. The shipping sender name appears discreetly as <span class="font-medium text-stone-900">"Vela Fulfillment"</span> or <span class="font-medium text-stone-900">"V.W. Co."</span> on outer shipping labels.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">4. Hygiene &amp; Return Policy</h2>
+                    <p>
+                        Due to strict health and safety standards governing personal intimate care items, <strong class="font-medium text-stone-900">opened or used products cannot be accepted for return or refund</strong>. If your order arrives damaged, defective, or incorrect, please notify support@velawellness.com within 14 days of delivery with photos for a prompt replacement.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">5. Intellectual Property Rights</h2>
+                    <p>
+                        All contents of this site—including text, label graphics, packaging designs, product descriptions, logo marks, and proprietary formula naming—are the exclusive intellectual property of VELA WELLNESS CO., LLC and protected under U.S. and international copyright and trademark laws.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">6. Limitation of Liability &amp; Governing Law</h2>
+                    <p>
+                        To the fullest extent permitted by law, VELA WELLNESS CO., LLC shall not be liable for any indirect, incidental, or consequential damages resulting from product use or site access. These terms are governed by and construed in accordance with the laws of the State of New Mexico, USA, without regard to conflict of law principles.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. FDA DISCLAIMER VIEW -->
+        <div id="view-disclaimer" class="page-view hidden py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-vela-gold">Regulatory Statement</span>
+                <h1 class="text-4xl font-serif text-stone-900 mt-2">FDA &amp; Health Disclaimer</h1>
+                <p class="text-stone-500 text-xs mt-2">Important Medical &amp; Cosmetic Disclosure</p>
+            </div>
+
+            <div class="bg-white p-8 sm:p-12 rounded-2xl border border-stone-200 space-y-8 text-stone-700 text-xs sm:text-sm leading-relaxed font-light">
+                <div class="p-6 bg-amber-50/60 rounded-xl border border-vela-gold/30">
+                    <div class="flex items-start gap-4">
+                        <div class="p-2 bg-vela-gold text-white rounded-lg shrink-0 mt-1">
+                            <i data-lucide="alert-circle" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-serif text-base font-semibold text-stone-900 mb-1">FDA Notice Regarding Statements</h2>
+                            <p class="text-stone-800 font-normal">
+                                The statements made on this website regarding Vela products—including claims regarding hydration, tissue refinement, mineral toning, sensation awakening, and microbiome balance—have <strong>not been evaluated by the Food and Drug Administration (FDA)</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">1. Cosmetic Status &amp; Intended Use</h2>
+                    <p>
+                        Vela intimate lubricants and serums are personal cosmetic preparations designed solely for topical comfort, intimate skin hydration, and tissue surface conditioning. Vela products are <strong>not drugs</strong> and are <strong>not intended to diagnose, treat, cure, mitigate, or prevent any medical condition, infection, or disease</strong> (including but not limited to bacterial vaginosis, yeast infections, STIs, or hormonal atrophy).
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">2. Patch Testing &amp; Dermal Sensitivity</h2>
+                    <p class="mb-3">
+                        Intimate mucosal tissue is naturally delicate and highly individual. While all Vela formulas are rigorously dermatologist-tested, pH-balanced (3.8–4.2), and free from synthetic fragrances or harsh preservatives:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>We strongly recommend conducting a 24-hour patch test on your inner forearm or small area of skin prior to intimate application.</li>
+                        <li>If you experience redness, burning, itching, excessive heat, or irritation, <strong>discontinue use immediately</strong> and wash the area thoroughly with lukewarm water.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">3. Medical Consultation &amp; Special Conditions</h2>
+                    <p>
+                        If you are pregnant, nursing, trying to conceive, managing a diagnosed gynecological or urological condition, using prescription topical treatments, or recovering from recent surgery, please consult your physician or board-certified gynecologist prior to using any new intimate skincare product.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-lg font-semibold text-stone-900 mb-2">4. Active Mineral Salt Information</h2>
+                    <p>
+                        Our Mineral Toning Serum features micro-dosed Potassium Alum, a purified mineral salt known for its natural topical astringent properties. This product is formulated exclusively for external intimate tissue application. Do not apply on raw, broken, freshly shaved, or irritated skin surfaces.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-stone-900 text-stone-300 pt-16 pb-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Brand Column -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+                        <div class="w-10 h-10 rounded-full border border-vela-gold/60 flex items-center justify-center p-1 relative bg-stone-800">
+                            <svg viewBox="0 0 100 100" class="w-full h-full text-vela-gold">
+                                <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-dasharray="260 25" stroke-dashoffset="40" />
+                                <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.8" />
+                                <text x="50" y="58" font-family="serif" font-size="34" font-weight="bold" text-anchor="middle" fill="currentColor">V</text>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="font-serif text-2xl tracking-[0.25em] text-white font-semibold block leading-none">VELA</span>
+                            <span class="text-[8px] uppercase tracking-[0.2em] text-vela-gold font-bold block mt-1">Nature's Essence. Your Flow.</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-stone-400 leading-relaxed">
+                        Pioneering body-safe, pH-balanced intimate care crafted with pure botanicals and mineral actives.
+                    </p>
+                </div>
+
+                <!-- Navigation Links Column -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-4">Shop Collection</h4>
+                    <ul class="space-y-2 text-xs text-stone-400">
+                        <li><button onclick="navigateTo('product-daily-hydration')" class="hover:text-vela-gold transition-colors">Daily Hydration Lubricant</button></li>
+                        <li><button onclick="navigateTo('product-sensation-enhancing')" class="hover:text-vela-gold transition-colors">Sensation-Enhancing Formula</button></li>
+                        <li><button onclick="navigateTo('product-gentle-balance')" class="hover:text-vela-gold transition-colors">Gentle Balance Prebiotic</button></li>
+                        <li><button onclick="navigateTo('product-mineral-toning')" class="hover:text-vela-gold transition-colors">Mineral Toning Serum</button></li>
+                    </ul>
+                </div>
+
+                <!-- Company Column -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-4">Explore Vela</h4>
+                    <ul class="space-y-2 text-xs text-stone-400">
+                        <li><button onclick="navigateTo('story')" class="hover:text-vela-gold transition-colors">Our Formulation Science</button></li>
+                        <li><button onclick="navigateTo('ingredients')" class="hover:text-vela-gold transition-colors">Ingredients Glossary</button></li>
+                        <li><button onclick="navigateTo('journal')" class="hover:text-vela-gold transition-colors">The Vela Journal</button></li>
+                        <li><button onclick="navigateTo('faq')" class="hover:text-vela-gold transition-colors">FAQ &amp; Shipping</button></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Legal -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-4">Contact &amp; Care</h4>
+                    <p class="text-xs text-stone-400 leading-relaxed mb-2">
+                        Distributed by VELA WELLNESS CO., LLC<br>
+                        Taos, NM 87571 USA<br>
+                        support@velawellness.com
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="border-t border-stone-800 pt-8 flex flex-col sm:flex-row justify-between items-center text-[11px] text-stone-500">
+                <p>&copy; 2026 VELA WELLNESS CO., LLC. All rights reserved.</p>
+                <div class="flex gap-4 mt-4 sm:mt-0">
+                    <button onclick="navigateTo('privacy')" class="hover:text-vela-gold transition-colors">Privacy Policy</button>
+                    <button onclick="navigateTo('terms')" class="hover:text-vela-gold transition-colors">Terms of Service</button>
+                    <button onclick="navigateTo('disclaimer')" class="hover:text-vela-gold transition-colors">FDA Disclaimer</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Slide-over Cart Drawer -->
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-stone-900/50 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-6 border-b border-stone-200 flex items-center justify-between">
+            <h3 class="font-serif text-lg font-semibold text-stone-900">Your Shopping Bag</h3>
+            <button onclick="toggleCart()" class="p-2 text-stone-500 hover:text-stone-900">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div id="cart-items-container" class="flex-grow p-6 overflow-y-auto space-y-4">
+            <!-- Empty State -->
+            <div id="cart-empty" class="text-center py-12 text-stone-400 space-y-3">
+                <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto stroke-1"></i>
+                <p class="text-xs uppercase tracking-wider font-semibold">Your bag is currently empty</p>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-stone-200 bg-stone-50 space-y-4">
+            <div class="flex justify-between text-sm font-semibold text-stone-900">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">$0.00</span>
+            </div>
+            <p class="text-[10px] text-stone-500">Taxes and shipping calculated at checkout. Free shipping over $50.</p>
+            <button onclick="openCheckout()" class="w-full py-4 bg-vela-dark text-white text-xs uppercase tracking-widest font-semibold hover:bg-vela-gold transition-colors shadow-md">
+                Proceed To Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout Simulation Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white max-w-lg w-full rounded-2xl p-8 border border-stone-200 shadow-2xl relative">
+            <button onclick="closeCheckout()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-900">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <div id="checkout-step-1">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-vela-gold">Secure SSL Checkout</span>
+                <h3 class="font-serif text-2xl font-semibold text-stone-900 mt-1 mb-6">Complete Your Order</h3>
+                
+                <form onsubmit="processCheckout(event)" class="space-y-4 text-xs">
+                    <div>
+                        <label class="block font-semibold text-stone-700 mb-1">Email Address</label>
+                        <input type="email" required placeholder="you@domain.com" class="w-full p-3 border border-stone-300 rounded focus:outline-none focus:border-vela-gold">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-semibold text-stone-700 mb-1">First Name</label>
+                            <input type="text" required placeholder="Jane" class="w-full p-3 border border-stone-300 rounded focus:outline-none focus:border-vela-gold">
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-stone-700 mb-1">Last Name</label>
+                            <input type="text" required placeholder="Doe" class="w-full p-3 border border-stone-300 rounded focus:outline-none focus:border-vela-gold">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-stone-700 mb-1">Shipping Address</label>
+                        <input type="text" required placeholder="123 Wellness Way" class="w-full p-3 border border-stone-300 rounded focus:outline-none focus:border-vela-gold">
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-vela-gold text-white uppercase font-bold tracking-widest text-xs rounded hover:bg-stone-900 transition-colors mt-4">
+                        Pay Now &amp; Confirm
+                    </button>
+                </form>
+            </div>
+
+            <div id="checkout-step-2" class="hidden text-center py-8 space-y-4">
+                <div class="w-16 h-16 rounded-full bg-vela-green/20 text-vela-green flex items-center justify-center mx-auto">
+                    <i data-lucide="check-circle" class="w-10 h-10"></i>
+                </div>
+                <h3 class="font-serif text-2xl font-semibold text-stone-900">Order Confirmed!</h3>
+                <p class="text-xs text-stone-600 leading-relaxed max-w-sm mx-auto">
+                    Thank you for choosing Vela. Your order has been placed successfully and will ship in discrete, recyclable packaging.
+                </p>
+                <button onclick="closeCheckout()" class="px-8 py-3 bg-vela-dark text-white text-xs uppercase tracking-widest font-semibold hover:bg-vela-gold transition-colors">
+                    Back To Home
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Logic Script -->
+    <script>
+        // Global State & Catalog Dictionary
+        var cart = [];
+        
+        var productsCatalog = {
+            'daily-hydration': {
+                id: 'daily-hydration',
+                title: 'Daily Hydration Lubricant',
+                price: 38.00,
+                category: 'pH 4.0 Hydration',
+                color: 'vela-blue'
+            },
+            'sensation-enhancing': {
+                id: 'sensation-enhancing',
+                title: 'Sensation-Enhancing Lubricant',
+                price: 42.00,
+                category: 'Botanical Warmth',
+                color: 'vela-amber'
+            },
+            'gentle-balance': {
+                id: 'gentle-balance',
+                title: 'Gentle Balance Prebiotic',
+                price: 36.00,
+                category: 'Microbiome Care',
+                color: 'vela-green'
+            },
+            'mineral-toning': {
+                id: 'mineral-toning',
+                title: 'Mineral Toning Serum',
+                price: 48.00,
+                category: 'Potassium Alum Active',
+                color: 'vela-purple'
+            }
+        };
+
+        // Global Navigation Handler
+        window.navigateTo = function(pageId) {
+            if (!pageId) return;
+            var targetId = pageId.startsWith('view-') ? pageId : 'view-' + pageId;
+            var views = document.querySelectorAll('.page-view');
+            
+            views.forEach(function(view) {
+                view.classList.add('hidden');
+            });
+
+            var targetView = document.getElementById(targetId);
+            if (targetView) {
+                targetView.classList.remove('hidden');
+            } else {
+                var homeView = document.getElementById('view-home');
+                if (homeView) homeView.classList.remove('hidden');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.toggleMobileMenu = function() {
+            var menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+        };
+
+        window.toggleCart = function() {
+            var drawer = document.getElementById('cart-drawer');
+            var overlay = document.getElementById('cart-overlay');
+            if (drawer && overlay) {
+                drawer.classList.toggle('translate-x-full');
+                overlay.classList.toggle('hidden');
+            }
+        };
+
+        // Cart Operations
+        window.addToCart = function(productId) {
+            var product = productsCatalog[productId];
+            if (!product) return;
+
+            var existingItem = cart.find(function(item) { return item.id === productId; });
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    quantity: 1
+                });
+            }
+
+            updateCartUI();
+            window.toggleCart();
+        };
+
+        window.updateQuantity = function(productId, delta) {
+            var item = cart.find(function(i) { return i.id === productId; });
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(function(i) { return i.id !== productId; });
+                }
+            }
+            updateCartUI();
+        };
+
+        function updateCartUI() {
+            var container = document.getElementById('cart-items-container');
+            var counter = document.getElementById('cart-counter');
+            var subtotalEl = document.getElementById('cart-subtotal');
+            var emptyState = document.getElementById('cart-empty');
+
+            var totalItems = cart.reduce(function(sum, item) { return sum + item.quantity; }, 0);
+            var subtotal = cart.reduce(function(sum, item) { return sum + (item.price * item.quantity); }, 0);
+
+            if (counter) counter.innerText = totalItems;
+            if (subtotalEl) subtotalEl.innerText = '$' + subtotal.toFixed(2);
+
+            if (!container) return;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="text-center py-12 text-stone-400 space-y-3"><i data-lucide="shopping-bag" class="w-12 h-12 mx-auto stroke-1"></i><p class="text-xs uppercase tracking-wider font-semibold">Your bag is currently empty</p></div>';
+                if (window.lucide) lucide.createIcons();
+                return;
+            }
+
+            var html = '';
+            cart.forEach(function(item) {
+                html += '<div class="flex items-center justify-between bg-stone-50 p-4 rounded-xl border border-stone-200">' +
+                    '<div>' +
+                        '<h4 class="font-serif text-sm font-semibold text-stone-900">' + item.title + '</h4>' +
+                        '<p class="text-xs font-semibold text-vela-gold mt-0.5">$' + item.price.toFixed(2) + '</p>' +
+                    '</div>' +
+                    '<div class="flex items-center gap-3 bg-white px-3 py-1 rounded border border-stone-200">' +
+                        '<button onclick="updateQuantity(\'' + item.id + '\', -1)" class="text-stone-500 hover:text-stone-900 font-bold">-</button>' +
+                        '<span class="text-xs font-semibold">' + item.quantity + '</span>' +
+                        '<button onclick="updateQuantity(\'' + item.id + '\', 1)" class="text-stone-500 hover:text-stone-900 font-bold">+</button>' +
+                    '</div>' +
+                '</div>';
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Checkout Modal Logic
+        window.openCheckout = function() {
+            if (cart.length === 0) return;
+            document.getElementById('checkout-modal').classList.remove('hidden');
+            document.getElementById('checkout-step-1').classList.remove('hidden');
+            document.getElementById('checkout-step-2').classList.add('hidden');
+        };
+
+        window.closeCheckout = function() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+        };
+
+        window.processCheckout = function(e) {
+            e.preventDefault();
+            cart = [];
+            updateCartUI();
+            document.getElementById('checkout-step-1').classList.add('hidden');
+            document.getElementById('checkout-step-2').classList.remove('hidden');
+        };
+
+        // DOM Initialization
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+
+            var currentHash = window.location.hash.replace('#', '');
+            if (currentHash) {
+                window.navigateTo(currentHash);
+            } else {
+                window.navigateTo('home');
+            }
+        });
+    </script>
+</body>
+</html>
