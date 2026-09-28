@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELA — Nature's Essence. Your Flow.</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        vela: {
+                            gold: '#B89566',
+                            goldlight: '#D4AF37',
+                            green: '#728A78',
+                            blue: '#6E8CA0',
+                            amber: '#B9734B',
+                            purple: '#876E91',
+                            dark: '#2D3436',
+                            cream: '#FAF8F5',
+                            sand: '#F4EFEA'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+        .bg-pattern {
+            background-color: #FAF8F5;
+            background-image: radial-gradient(#B89566 0.5px, transparent 0.5px), radial-gradient(#B89566 0.5px, #FAF8F5 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-opacity: 0.05;
+        }
+    </style>
+</head>
+<body class="bg-vela-cream text-vela-dark antialiased min-h-screen flex flex-col selection:bg-vela-gold selection:text-white">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-vela-dark text-stone-200 text-xs py-2 px-4 text-center font-medium tracking-widest uppercase">
+        Free Carbon-Neutral Shipping on US Orders Over $50 &nbsp;|&nbsp; Body-Safe &amp; Microbiome Balanced
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="sticky top-0 z-40 bg-vela-cream/90 backdrop-blur-md border-b border-stone-200/60 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Left Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8">
+                <button onclick="navigateTo('home')" class="text-xs font-semibold tracking-widest text-stone-700 hover:text-vela-gold transition-colors uppercase">Home</button>
+                <button onclick="navigateTo('shop-all')" class="text-xs font-semibold tracking-widest text-stone-700 hover:text-vela-gold transition-colors uppercase">Shop All</button>
+                <button onclick="navigateTo('story')" class="text-xs font-semibold tracking-widest text-stone-700 hover:text-vela-gold transition-colors uppercase">Our Story</button>
+                <button onclick="navigateTo('ingredients')" class="text-xs font-semibold tracking-widest text-stone-700 hover:text-vela-gold transition-colors uppercase">Ingredients</button>
+                <button onclick="navigateTo('journal')" class="text-xs font-semibold tracking-widest text-stone-700 hover:text-vela-gold transition-colors uppercase">Journal</button>
+            </div>
+
+            <!-- Center Logo Emblem (Gold Circular Frame Style) -->
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="navigateTo('home')">
+                <div class="w-11 h-11 rounded-full border border-vela-gold/60 flex items-center justify-center p-1 relative bg-amber-50/40 group-hover:border-vela-gold transition-all shadow-sm">
+                    <svg viewBox="0 0 100 100" class="w-full h-full text-vela-gold">
+                        <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-dasharray="260 25" stroke-dashoffset="40" />
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.8" />
+                        <text x="50" y="58" font-family="serif" font-size="34" font-weight="bold" text-anchor="middle" fill="currentColor">V</text>
+                        <path d="M 42 40 C 38 34, 44 28, 47 33 C 45 37, 43 39, 42 40 Z" fill="currentColor" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-serif text-2xl tracking-[0.28em] text-stone-900 font-semibold block leading-none">VELA</span>
+                    <span class="text-[8px] uppercase tracking-[0.22em] text-vela-gold font-bold block mt-1">Nature's Essence. Your Flow.</span>
+                </div>
+            </div>
+
+            <!-- Right Action Items -->
+            <div class="flex items-center space-x-6">
+                <button onclick="navigateTo('faq')" class="hidden sm:block text-xs font-semibold tracking-wider text-stone-600 hover:text-stone-900 uppercase">FAQ</button>
+                
+                <button onclick="toggleCart()" class="relative p-2 text-stone-700 hover:text-vela-gold transition-colors">
+                    <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                    <span id="cart-counter" class="absolute -top-1 -right-1 bg-vela-gold text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-sm">0</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-stone-700">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-50 border-b border-stone-200 px-6 py-6 space-y-4">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">Home</button>
+            <button onclick="navigateTo('shop-all'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">Shop All</button>
+            <button onclick="navigateTo('story'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">Our Story</button>
+            <button onclick="navigateTo('ingredients'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">Ingredients Glossary</button>
+            <button onclick="navigateTo('journal'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">Journal</button>
+            <button onclick="navigateTo('faq'); toggleMobileMenu()" class="block w-full text-left text-sm font-semibold tracking-wider uppercase text-stone-800 py-2">FAQ &amp; Help</button>
+        </div>
+    </nav>
+
+    <!-- Main Dynamic Content Views Container -->
+    <main class="flex-grow">
+
+        <!-- 1. HOME VIEW -->
+        <div id="view-home" class="page-view">
+            <!-- Hero Section -->
+            <section class="relative bg-vela-sand/60 py-20 lg:py-28 overflow-hidden border-b border-stone-200/50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-6 text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vela-gold/10 text-vela-gold text-xs font-semibold uppercase tracking-widest">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Clean Intimate Care &amp; Active Mineral Serums
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal text-stone-900 leading-tight">
+                                Pure Botanicals. <br><span class="italic font-normal text-vela-gold">Refined Intimate Wellness.</span>
+                            </h1>
+                            <p class="text-base sm:text-lg text-stone-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+                                Formulated with micro-dosed mineral salts, organic botanicals, and bio-identical hyaluronic acid to support pH balance, hydration, and natural tissue tone.
+                            </p>
+                            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                                <button onclick="navigateTo('shop-all')" class="w-full sm:w-auto px-8 py-4 bg-vela-dark text-white text-xs uppercase tracking-widest font-semibold hover:bg-vela-gold transition-all duration-300 shadow-md">
+                                    Explore The Collection
+                                </button>
+                                <button onclick="navigateTo('story')" class="w-full sm:w-auto px-8 py-4 border border-stone-300 text-stone-800 text-xs uppercase tracking-widest font-semibold hover:border-stone-900 transition-all">
+                                    Our Formulation Science
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Hero Bottle Graphic Showcase -->
+                        <div class="relative flex justify-center items-center">
+                            <div class="w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-stone-200/50 absolute blur-3xl -z-10"></div>
+                            <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl border border-stone-200 shadow-xl max-w-sm w-full text-center relative">
+                                <div class="absolute -top-4 right-4 bg-vela-gold text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full shadow">
+                                    Flagship Formula
+                                </div>
+                                <!-- Vector Rendered Bottle Artwork -->
+                                <div class="w-32 h-56 mx-auto mb-4 relative">
+                                    <svg viewBox="0 0 100 200" class="w-full h-full drop-shadow-md">
+                                        <!-- Bottle Top Pump -->
+                                        <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                        <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                        <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                        <!-- Bottle Body -->
+                                        <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                        <!-- Label -->
+                                        <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                        <!-- Label Design -->
+                                        <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                        <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                        <text x="50" y="105" font-family="serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#2D3436">MINERAL TONING</text>
+                                        <text x="50" y="113" font-family="sans-serif" font-size="5" text-anchor="middle" fill="#876E91">SERUM</text>
+                                        <line x1="35" y1="120" x2="65" y2="120" stroke="#876E91" stroke-width="0.5" />
+                                        <text x="50" y="130" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Potassium Alum · Rosewater</text>
+                                        <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                                    </svg>
+                                </div>
+                                <h3 class="font-serif text-xl text-stone-900 font-semibold">Mineral Toning Serum</h3>
+                                <p class="text-xs text-stone-500 mt-1">Potassium Alum · Rosewater · Hyaluronic Acid</p>
+                                <p class="text-sm font-semibold text-vela-gold mt-2">$48.00</p>
+                                <button onclick="addToCart('mineral-toning')" class="mt-4 w-full py-2.5 bg-vela-dark text-white text-xs uppercase tracking-widest font-semibold hover:bg-vela-gold transition-colors">
+                                    Add To Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Products Grid -->
+            <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-vela-gold">Formulated For Daily Harmony</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif text-stone-900 mt-2">The Complete Vela Lineup</h2>
+                    <p class="text-stone-600 text-sm mt-3 font-light">Body-safe, non-synthetic intimate formulations crafted with bio-matched pH levels and ultra-pure botanical actives.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Product Card 1: Daily Hydration -->
+                    <div class="bg-white rounded-xl border border-stone-200/80 p-6 flex flex-col justify-between hover:shadow-lg transition-all group">
+                        <div>
+                            <div class="bg-stone-50 rounded-lg p-6 mb-6 flex justify-center items-center h-56 relative group-hover:bg-amber-50/20 transition-colors">
+                                <svg viewBox="0 0 100 200" class="w-28 h-48 drop-shadow-sm">
+                                    <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                    <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                    <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                    <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                    <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                    <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                    <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                    <text x="50" y="105" font-family="serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#2D3436">DAILY HYDRATION</text>
+                                    <text x="50" y="113" font-family="sans-serif" font-size="5" text-anchor="middle" fill="#6E8CA0">INTIMATE LUBRICANT</text>
+                                    <path d="M 35 122 Q 50 118 65 122" stroke="#6E8CA0" fill="none" stroke-width="1" />
+                                    <text x="50" y="132" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Hyaluronic Acid · Aloe</text>
+                                    <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                                </svg>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-vela-blue">pH 4.0 Hydration</span>
+                            <h3 class="font-serif text-lg text-stone-900 font-semibold mt-1 cursor-pointer hover:text-vela-gold" onclick="navigateTo('product-daily-hydration')">Daily Hydration</h3>
+                            <p class="text-xs text-stone-500 mt-2 line-clamp-2 leading-relaxed">Pure water-based moisturizer enriched with bio-identical hyaluronic acid, organic aloe vera, and soothing vitamin E.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <span class="font-semibold text-stone-900">$38.00</span>
+                            <button onclick="addToCart('daily-hydration')" class="px-4 py-2 bg-stone-900 text-white text-xs uppercase font-semibold tracking-wider hover:bg-vela-gold transition-colors">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2: Sensation-Enhancing -->
+                    <div class="bg-white rounded-xl border border-stone-200/80 p-6 flex flex-col justify-between hover:shadow-lg transition-all group">
+                        <div>
+                            <div class="bg-stone-50 rounded-lg p-6 mb-6 flex justify-center items-center h-56 relative group-hover:bg-amber-50/20 transition-colors">
+                                <svg viewBox="0 0 100 200" class="w-28 h-48 drop-shadow-sm">
+                                    <rect x="42" y="10" width="16" height="15" fill="#B89566" rx="2" />
+                                    <rect x="36" y="25" width="28" height="8" fill="#D4AF37" rx="1" />
+                                    <rect x="44" y="33" width="12" height="12" fill="#B89566" />
+                                    <rect x="20" y="45" width="60" height="140" fill="#EAE8E3" rx="10" opacity="0.85" />
+                                    <rect x="23" y="65" width="54" height="100" fill="#FFFFFF" rx="4" stroke="#E2DCD5" stroke-width="0.5" />
+                                    <circle cx="50" cy="85" r="10" fill="none" stroke="#B89566" stroke-width="0.8" />
+                                    <text x="50" y="88" font-family="serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#B89566">V</text>
+                                    <text x="50" y="103" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#2D3436">SENSATION</text>
+                                    <text x="50" y="110" font-family="serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#2D3436">ENHANCING</text>
+                                    <path d="M 35 120 Q 50 115 65 120" stroke="#B9734B" fill="none" stroke-width="1" />
+                                    <text x="50" y="130" font-family="sans-serif" font-size="4" text-anchor="middle" fill="#555">Ginger · Damiana · Maca</text>
+                                    <text x="50" y="152" font-family="sans-serif" font-size="5" font-weight="bold" text-anchor="middle" fill="#2D3436">100 mL / 3.4 fl. oz.</text>
+                                </svg>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-vela-amber">Botanical Warmth</span>
+                            <h3 class="font-se
